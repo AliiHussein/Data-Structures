@@ -1,19 +1,21 @@
 #include <iostream>
 using namespace std;
 
-const int MAX_SIZE = 4;
+#define MAX_SIZE  4
+
+template<class data>
 
 class Stack
 {
 private:
     int top;
-    int arr[MAX_SIZE];
+    data arr[MAX_SIZE];
 public:
     Stack(){
         top = -1;
     }
 
-    void push(int element){
+    void push(data element){
         if(top == (MAX_SIZE - 1)){
             cout << "Array is full" << endl;
         }
@@ -31,7 +33,7 @@ public:
         } 
     }
 
-    void pop(int&Element){
+    void pop(data&Element){
         if(top == -1){
             cout << "Array is Empty" << endl;
         }
@@ -65,13 +67,13 @@ public:
 };
 
 int main(){
-    Stack s;
-    int t = s.Top();
+    Stack<char>s;
+    char t = s.Top();
     cout << t << endl;
 
-    s.push(1);
-    s.push(2);
-    s.push(3);
+    s.push('A');
+    s.push('B');
+    s.push('c');
 
     t = s.Top();
     cout << t << endl;
