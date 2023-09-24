@@ -10,6 +10,7 @@ int isEmpty(struct Node* list){
     return (list == NULL);
 }
 
+// Use pointer to pointer if you are going to change the head
 void insertFirst(struct Node** head, int data){
     // 1. Create a new node
     struct Node* newnode = (struct Node*)malloc(sizeof(struct Node));
@@ -25,12 +26,12 @@ void insertFirst(struct Node** head, int data){
 
 }
 
-void display(struct Node* list){
-    if(isEmpty(list)){
+void display(struct Node* head){
+    if(isEmpty(head)){
         printf("List is Empty\n");
     }
     else{
-        struct Node* temp = list;
+        struct Node* temp = head;
         while(temp != NULL){
             printf("%d ", temp->data);
             temp = temp->next;
@@ -39,13 +40,36 @@ void display(struct Node* list){
     }
 }
 
+int count(struct Node* head){
+    struct Node* temp = head;
+    int count = 0;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
 void main(){
     struct Node * Head = NULL; // created an Empty LL
     
-    display(Head);
-    insertFirst(&Head, 2);
-    insertFirst(&Head, 3);
-    insertFirst(&Head, 4);
-    display(Head);
+    int newElement;
+    int elemet;
+
+    int options = 0;
+    while(options != 1){
+        printf("\n");
+        printf("List: "); 
+        display(Head);
+        printf("Enter an option: ");
+        scanf("%d", &options);
+        switch (options)
+        {
+        case 1: break;
+        case 2: printf("Enter new element to insert first: "); scanf("%d", &newElement); insertFirst(&Head,newElement); break;
+        case 3: printf("count: %d\n", count(Head)); break;
+        default: options = 1; break;
+        }
+    }
 
 }
