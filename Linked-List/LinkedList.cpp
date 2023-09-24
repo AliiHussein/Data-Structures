@@ -25,12 +25,7 @@ public:
         // 2. Fill its data 
         newnode->data = element;
         //3. Assign its next node
-        if(isEmpty()){
-            newnode->next = NULL;
-        }
-        else{
-            newnode->next = head;
-        }
+        newnode->next = head;
         // 4. Make the head points to it
         head = newnode;
     }
