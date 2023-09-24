@@ -88,6 +88,7 @@ public:
     }
 
     void Delete(int element){
+        // 0. If it is empty then return
         if(isEmpty()){
             cout << "List is empty" << endl;
             return;
@@ -166,6 +167,7 @@ int main(){
         case 6: cout << "Enter element to search for: "; cin >> newElement; cout << l1.isFound(newElement) << endl; break;
         case 7: cout << "Enter element to insert before: "; cin >> elemet; cout << "Enter element to insert: "; cin >> newElement; l1.insertBefore(elemet, newElement); break;
         case 8: cout << "Enter new element to append: "; cin >> newElement; l1.append(newElement); break;
+        case 9: cout << "Enter element to delete: "; cin >> elemet; l1.Delete(elemet); break;
         default: break;
         }
     }
