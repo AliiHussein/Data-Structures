@@ -10,6 +10,17 @@ int isEmpty(struct Node* list){
     return (list == NULL);
 }
 
+int isFound(struct Node* head, int key){
+    struct Node* temp = head;
+    while(temp != NULL){
+        if(temp->data == key){
+                return 1;
+            }
+            temp = temp->next;
+        }
+    return 0;
+}
+
 // Use pointer to pointer if you are going to change the head
 void insertFirst(struct Node** head, int data){
     // 1. Create a new node
@@ -24,6 +35,40 @@ void insertFirst(struct Node** head, int data){
     // the new node
     (*head) = newnode;
 
+}
+
+void insertBefore(struct Node** head, int element, int newElement){
+    if(isEmpty(*head)){
+        insertFirst(head, newElement);
+        return;
+    }
+
+    if(isFound(*head, element)){
+        // 1. Create a new node
+        struct Node* newnode =(struct Node*)malloc(sizeof(struct Node));
+        // 2. Fill its data
+        newnode->data = newElement;
+
+        if((*head)->data == element){
+            insertFirst(head, newElement);
+            return;
+        }
+
+        struct Node* temp = *head;
+
+        while(temp != NULL && temp->next->data != element){
+            temp = temp->next;
+        }
+        
+        // 3. Assign its next to the next node
+        newnode->next = temp->next;
+        // 4. Make the current node points to it
+        temp->next = newnode;
+    }
+    else{
+        printf("Item is not found!\n");
+    }
+    
 }
 
 void display(struct Node* head){
@@ -68,6 +113,8 @@ void main(){
         case 1: break;
         case 2: printf("Enter new element to insert first: "); scanf("%d", &newElement); insertFirst(&Head,newElement); break;
         case 3: printf("count: %d\n", count(Head)); break;
+        case 4: printf("Enter element to insert before: "); scanf("%d", &elemet); printf("Enter element to insert: "); scanf("%d", &newElement); insertBefore(&Head, elemet, newElement); break;
+        case 5: printf("Enter element to search for: "); scanf("%d", &elemet); printf("%d\n", isFound(Head, elemet)); break;
         default: options = 1; break;
         }
     }
