@@ -31,7 +31,6 @@ public:
     }
 
     void insertBefore(int element, int newElement){
-        // 0. If it is empty then insert first
         if(isEmpty()){
             insertFirst(newElement);
             return;
@@ -42,6 +41,11 @@ public:
             Node* newnode =new Node();
             // 2. Fill its data
             newnode->data = newElement;
+
+            if(head->data == element){
+                insertFirst(newElement);
+                return;
+            }
 
             Node* temp = head;
 
