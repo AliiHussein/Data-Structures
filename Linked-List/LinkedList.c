@@ -71,6 +71,59 @@ void insertBefore(struct Node** head, int element, int newElement){
     
 }
 
+void append(struct Node** head, int data){
+    // 0. If it is empty then insert first
+    if(isEmpty(*head)){
+        insertFirst(head, data);
+        return;
+    }
+
+    // 1. Create a new node
+    struct Node* newnode = (struct Node*)malloc(sizeof(struct Node));
+
+    // 2. Fill its data
+    newnode->data = data;
+
+    // 3. Assign its next to null
+    newnode->next = NULL;
+    // 4. Assign the previous node to it
+    struct Node* temp = *head;
+    while(temp->next != NULL){
+        temp = temp->next;
+    } 
+    temp->next = newnode;
+}
+
+void Delete(struct Node** head, int element){
+    // 0. If it is empty then return list is empty
+    if(isEmpty(*head)){
+        printf("List is empty");
+        return;
+    }
+
+    if(isFound(*head, element)){
+        if((*head)->data == element){
+            struct Node* delNode = *head;
+            (*head) = (*head)->next;
+            free(delNode);
+            return;
+        }
+        else{
+            struct Node* delNode = *head;
+            struct Node* prev = NULL;
+            while(delNode->data != element){
+                prev = delNode;
+                delNode = delNode->next;
+            }
+            prev->next = delNode->next;
+            free(delNode);
+        }
+    }
+    else{
+        printf("Item is not found!\n");
+    } 
+}
+
 void display(struct Node* head){
     if(isEmpty(head)){
         printf("List is Empty\n");
@@ -115,6 +168,8 @@ void main(){
         case 3: printf("count: %d\n", count(Head)); break;
         case 4: printf("Enter element to insert before: "); scanf("%d", &elemet); printf("Enter element to insert: "); scanf("%d", &newElement); insertBefore(&Head, elemet, newElement); break;
         case 5: printf("Enter element to search for: "); scanf("%d", &elemet); printf("%d\n", isFound(Head, elemet)); break;
+        case 6: printf("Enter new element to append: "); scanf("%d", &newElement); append(&Head,newElement); break;
+        case 7: printf("Enter new element to delete: "); scanf("%d", &newElement); Delete(&Head,newElement); break;
         default: options = 1; break;
         }
     }
