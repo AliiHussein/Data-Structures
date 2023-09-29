@@ -40,6 +40,11 @@ public:
     }
 
     int dequeue(){
+
+        if(isEmpty()){
+            cout << "Queue is Empty!" << endl;
+            return -1;
+        }
         // 0. Save the value to return later
         int value = front->data;
         // 1. Create a delNode pointer
@@ -94,6 +99,12 @@ public:
         return (rear->data);
     }
 
+    void clear(){
+        while(isEmpty() == 0){
+            dequeue();
+        }
+    }
+
 };
 
 int main(){
@@ -112,11 +123,12 @@ int main(){
         {
         case 1: break;
         case 2: cout << "Enqueue: "; cin >> element; q1.enqueue(element); break;
-        case 3: cout << "Dnqueue: " << q1.dequeue() << endl; break;
+        case 3: cout << "Dequeue: " << q1.dequeue() << endl; break;
         case 4: cout << "Front: " << q1.Front() << endl; break;
         case 5: cout << "Rear: " << q1.Rear() << endl; break;
         case 6: cout << "Count: " << q1.count() << endl; break;
         case 7: cout << "Search: "; cin >> element; cout << "Found? " << q1.isFound(element) << endl; break;
+        case 8: cout << "Clearing the Queue" << endl; q1.clear(); break;
         default: options = 1; break;
         }
     }
