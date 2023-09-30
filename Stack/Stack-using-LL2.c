@@ -7,7 +7,7 @@ struct Node{
 };
 
 struct Stack{
-    struct Node* stack;
+    struct Node* top;
 };
 
 int isEmpty(struct Node* top){
@@ -86,7 +86,7 @@ int peek(struct Node* top){
 
 void main(){
 
-    struct Node* Top = NULL; // creating an empty stack
+    struct Stack s1 = {NULL}; // creating an empty stack
 
     int elemet;
 
@@ -94,17 +94,17 @@ void main(){
     while(options != 1){
         printf("\n");
         printf("Stack: "); 
-        display(Top);
+        display(s1.top);
         printf("Enter an option: ");
         scanf("%d", &options);
         switch (options)
         {
         case 1: break;
-        case 2: printf("Push: "); scanf("%d", &elemet); push(&Top, elemet); break;
-        case 3: printf("Pop: %d\n",pop(&Top)); break;
-        case 4: printf("Peek: %d\n",peek(Top)); break;
-        case 5: printf("Count: %d\n",count(Top)); break;
-        case 6: printf("Search: "); scanf("%d", &elemet); printf("is Found? : %d\n", isFound(Top, elemet)); break;
+        case 2: printf("Push: "); scanf("%d", &elemet); push(&(s1.top), elemet); break;
+        case 3: printf("Pop: %d\n",pop(&(s1.top))); break;
+        case 4: printf("Peek: %d\n",peek(s1.top)); break;
+        case 5: printf("Count: %d\n",count(s1.top)); break;
+        case 6: printf("Search: "); scanf("%d", &elemet); printf("is Found? : %d\n", isFound(s1.top, elemet)); break;
         default: options = 1; break;
         }
     }
